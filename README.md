@@ -1,34 +1,69 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Portfolio
 
-## Getting Started
+### Sobre
+- Portfolio e blog pessoal integrado a API do Notion.
 
-First, run the development server:
+### Primeiros passos
+
+- Clonar o repositório;
+
+- Preparar arquivos `.env`;
 
 ```bash
-npm run dev
-# or
-yarn dev
+# Criar o .env com os detalhes de infra
+cp .env-infra .env
+
+# Criar o .env com os detalhes do app
+cp app/.env-dev app/.env
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Configurar as variáveis de ambiente dos arquivos `.env`.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```python
+# Preencher o arquivo .env de infra
+CONTAINER_PORT=
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+# Preencher o arquivo .env do app
+...
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Criar o ambiente pela primeira vez
 
-## Learn More
+- Para realizar a criação de ambiente na primeira vez, utilize:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Criar o container: 
+docker-compose up --build -d 
+```
+### Subir o ambiente no dia a dia
+- Após ter criado o ambiente, nas demais ocasiões que for necessário subir o ambiente para inicar a codificação, basta executar:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# Iniciar a aplicação
+docker-compose up
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- E para consultar os logs da aplicação, basta executar o comando: 
 
-## Deploy on Vercel
+```bash
+# Ver logs da aplicação
+docker-compose logs -f
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Comandos importantes no dia a dia de desenvolvimento
+```bash
+# Instalar uma dependência no package.json
+docker exec -i portfolio sh -c "npm install <nome-pacote>"
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Executar o linter para validar o código
+docker exec -i portfolio sh -c "npm run lint"
+
+# Instalar uma dependência apenas de desenvolvimento no package.json
+docker exec -i portfolio sh -c "npm install --save-dev <nome-pacote>"
+
+# Atualizar dependências da aplicação
+docker exec -i portfolio sh -c "npm update"
+
+# Executar um dos scripts do package.json 
+docker exec -i portfolio sh -c "npm run <script>"
+```

@@ -1,0 +1,21 @@
+version: "3.3"
+
+services:
+  app:
+    container_name: portfolio
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    restart: "no"
+    user: node
+    command: npm run dev
+    volumes:
+      - ./project/:/app/
+      - /app/node_modules/
+      - /app/.next/
+    env_file:
+      - ./project/.env
+      - ./.env
+    ports:
+      - ${CONTAINER_PORT}:3000
