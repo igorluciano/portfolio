@@ -108,7 +108,7 @@
   }
 
   .linktree__item {
-    @apply flex items-center justify-center gap-2 px-3 py-3 mb-4 mx-auto border border-color-light-100 rounded-full text-linktree-link font-roboto font-bold text-color-light-100  shadow-sm shadow-color-primary-100 hover:bg-color-light-100 hover:text-color-primary-100 hover:ease-out duration-200;
+    @apply flex items-center justify-center gap-2 px-3 py-3 mb-4 mx-auto border-2 border-color-light-100 rounded-full text-linktree-link font-roboto font-bold text-color-light-100  shadow-sm shadow-color-primary-100 hover:bg-color-light-100 hover:text-color-primary-100 hover:ease-out duration-200;
   }
 
   .container-base {
@@ -148,9 +148,6 @@
     @apply  md:hidden block w-6 cursor-pointer hover:opacity-80 text-menu-trigger text-color-light-100 mr-2;
   }
 
-  .navigation {
-    @apply flex items-center gap-2 text-navigation text-color-primary-400 font-bold mb-3;
-  }
   .section {
     @apply font-bold text-section text-color-primary-400;
   }
@@ -172,12 +169,19 @@
   }
 
   .workdone__banner {
-     
+     @apply rounded-xl;
   }
 
   .workdone__content {
-    @apply flex flex-col justify-between ;
-  } 
+    @apply flex flex-col justify-between p-3;
+  }
+
+  .workdone__categorys {
+    @apply flex;
+  }
+  .workdone__category {
+    @apply lg:ml-auto block text-color-secondary-100 p-1 px-2 rounded-md text-workdone-category;
+  }
   .workdone__date {
     @apply text-workdone-date text-color-secondary-100 font-bold;
   }
