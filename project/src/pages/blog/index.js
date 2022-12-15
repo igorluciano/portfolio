@@ -1,8 +1,8 @@
-import { menuLayout } from "@layouts/variants";
+import { MenuLayout } from "@layouts/variants";
 import { allPublications } from "src/data/publications";
 import { FaArrowLeft } from "react-icons/fa";
 import Link from "next/link";
-Sobre.getLayout = menuLayout;
+Sobre.getLayout = MenuLayout;
 export default function Sobre() {
   const publication = allPublications[0];
   return (

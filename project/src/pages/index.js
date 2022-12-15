@@ -1,10 +1,10 @@
-import { linktreeLayout } from "@layouts/variants";
+import { LinktreeLayout } from "@layouts/variants";
 import { FaGithub, FaLinkedin, FaRegImage, FaChild, FaNewspaper } from "react-icons/fa";
 import Link from "next/link";
 import photo from "@assets/photo.jpg";
 import Image from "next/image";
 
-Home.getLayout = linktreeLayout;
+Home.getLayout = LinktreeLayout;
 export default function Home() {
   return (
     <div className="linktree">

@@ -1,6 +1,6 @@
-import { menuLayout } from "@layouts/variants";
+import { MenuLayout } from "@layouts/variants";
 
-Sobre.getLayout = menuLayout;
+Sobre.getLayout = MenuLayout;
 export default function Sobre() {
   return (
     <div>

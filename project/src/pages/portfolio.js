@@ -1,8 +1,8 @@
 import { WorkDone } from "@components/WorkDone";
-import { menuLayout } from "@layouts/variants";
+import { MenuLayout } from "@layouts/variants";
 import { allWorks } from "src/data/works";
 
-Portfolio.getLayout = menuLayout;
+Portfolio.getLayout = MenuLayout;
 export default function Portfolio() {
   return (
     <div>

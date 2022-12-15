@@ -3,7 +3,7 @@ import { Pagination } from "@components/Pagination";
 import { Publication } from "@components/Publication";
 import { allPublications } from "src/data/publications";
 import { useEffect, useState } from "react";
-import { menuLayout } from "@layouts/variants";
+import { MenuLayout } from "@layouts/variants";
 import Link from "next/link";
 
 const paginate = (items, itemsPerPage) => {
@@ -14,7 +14,7 @@ const paginate = (items, itemsPerPage) => {
   });
 };
 
-Page.getLayout = menuLayout;
+Page.getLayout = MenuLayout;
 export default function Page() {
   const publicationsPerPage = 5;
   const router = useRouter();
@@ -37,8 +37,8 @@ export default function Page() {
       <div className="content">
         {list?.map((publication, indice) => {
           return (
-            <Link href="/blog">
-              <Publication key={indice} banner={publication.banner} title={publication.title} description={publication.description} createdAt={publication.createdAt} tags={publication.tags} />
+            <Link href="/blog" key={indice}>
+              <Publication banner={publication.banner} title={publication.title} description={publication.description} createdAt={publication.createdAt} tags={publication.tags} />
             </Link>
           );
         })}

@@ -1,7 +1,7 @@
 import { TopBar } from "@components/TopBar";
 import { useEffect } from "react";
 
-export function menuLayout(page) {
+export function MenuLayout(page) {
   useEffect(() => {
     document.querySelector("body").classList.remove("linktree__background");
   });
@@ -13,7 +13,7 @@ export function menuLayout(page) {
   );
 }
 
-export function linktreeLayout(page) {
+export function LinktreeLayout(page) {
   useEffect(() => {
     document.querySelector("body").classList.add("linktree__background");
   });
