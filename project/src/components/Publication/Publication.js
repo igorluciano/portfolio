@@ -5,13 +5,14 @@ export function Publication({ title, description, createdAt, tags }) {
         <div className="publication__header">
           <div className="publication__date">{createdAt}</div>
           <div className="publication__tags">
-            {tags.map((tag, indice) => {
-              return (
-                <span className="publication__tag" key={indice}>
-                  #{tag}
-                </span>
-              );
-            })}
+            {tags &&
+              tags.map((tag, indice) => {
+                return (
+                  <span className="publication__tag" key={indice}>
+                    #{tag}
+                  </span>
+                );
+              })}
           </div>
         </div>
 

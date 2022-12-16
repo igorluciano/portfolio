@@ -57,7 +57,7 @@ export default function Page({ blogs }) {
         {list?.map((publication, indice) => {
           return (
             <Link href={["/blog/", publication.slug].join("")} key={indice}>
-              <Publication banner={publication.banner} title={publication.title} description={publication.description} createdAt={publication.date} tags={publication.tags} />
+              <Publication banner={publication.banner} title={publication.title} description={publication.description} createdAt={publication.date} tags={publication?.tags} />
             </Link>
           );
         })}
