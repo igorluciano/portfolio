@@ -1,21 +1,40 @@
+import fs from "fs";
+import matter from "gray-matter";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { Pagination } from "@components/Pagination";
 import { Publication } from "@components/Publication";
-import { allPublications } from "src/data/publications";
 import { useEffect, useState } from "react";
 import { MenuLayout } from "@layouts/variants";
-import Link from "next/link";
+import { paginate } from "@helpers/pagination";
 
-const paginate = (items, itemsPerPage) => {
-  const pageSize = Math.ceil(items.length / itemsPerPage);
-  return Array.from({ length: pageSize }, (_, index) => {
-    const start = index * itemsPerPage;
-    return items.slice(start, start + itemsPerPage);
+export async function getStaticProps() {
+  const filesInBlogs = fs.readdirSync("./content/blog/");
+  const blogs = filesInBlogs.map((filename) => {
+    const file = fs.readFileSync(`./content/blog/${filename}`, "utf8");
+    const matterData = matter(file);
+    return {
+      ...matterData.data,
+      slug: filename.slice(0, filename.indexOf(".")),
+    };
   });
+
+  return {
+    props: {
+      blogs,
+    },
+  };
+}
+
+export const getStaticPaths = async () => {
+  return {
+    paths: [{ params: { index: ["1"] } }],
+    fallback: "blocking",
+  };
 };
 
 Page.getLayout = MenuLayout;
-export default function Page() {
+export default function Page({ blogs }) {
   const publicationsPerPage = 5;
   const router = useRouter();
   const pageIndex = router.query["index"];
@@ -23,7 +42,7 @@ export default function Page() {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    const pages = paginate(allPublications, publicationsPerPage);
+    const pages = paginate(blogs, publicationsPerPage);
     if (pageIndex && pageIndex != 0 && pageIndex <= pages.length) {
       setList(pages[pageIndex - 1]);
       setTotal(pages.length);
@@ -37,8 +56,8 @@ export default function Page() {
       <div className="content">
         {list?.map((publication, indice) => {
           return (
-            <Link href="/blog" key={indice}>
-              <Publication banner={publication.banner} title={publication.title} description={publication.description} createdAt={publication.createdAt} tags={publication.tags} />
+            <Link href={["/blog/", publication.slug].join("")} key={indice}>
+              <Publication banner={publication.banner} title={publication.title} description={publication.description} createdAt={publication.date} tags={publication.tags} />
             </Link>
           );
         })}
